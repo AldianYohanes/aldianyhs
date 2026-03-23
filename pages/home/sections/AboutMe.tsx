@@ -1,4 +1,4 @@
-import { Group, Flex, Stack, Divider, Text } from "@mantine/core";
+import { Group, Flex, Stack, Divider, Text, Accordion } from "@mantine/core";
 
 export default function AboutMeSection() {
   return (
@@ -17,10 +17,33 @@ export default function AboutMeSection() {
             </Stack>
           </Group>
           <Divider orientation="vertical" />
-          <Group maw="40%">
+          <Stack w="40%" px="xl">
             {" "}
             <Text fz="h1">Academics</Text>
-          </Group>
+            <Accordion>
+              <Accordion.Item value="college">
+                <Accordion.Control>
+                  <Text fz="h3" c="white">
+                    Universitas Tarumanagara | Aug 2023–present
+                  </Text>
+                </Accordion.Control>
+                <Accordion.Panel>
+                  Organization: KMK Adhyatmaka, Dewan Perwakilan Mahasiswa
+                  Fakultas Teknologi Informasi
+                </Accordion.Panel>
+              </Accordion.Item>
+              <Accordion.Item value="highschool">
+                <Accordion.Control>
+                  <Text fz="h3" c="white">
+                    SMA Negeri 23 Jakarta | Jul 2020–Jul 2023
+                  </Text>
+                </Accordion.Control>
+                <Accordion.Panel>
+                  Organization: Rohkris, Paskibra, Language Club
+                </Accordion.Panel>
+              </Accordion.Item>
+            </Accordion>
+          </Stack>
         </Flex>
       </Group>
       <Divider my="md" />
