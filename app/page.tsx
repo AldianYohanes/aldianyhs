@@ -1,41 +1,21 @@
-"use client";
-import Home from "@/pages/home/home";
-import NavbarDrawer from "@/pages/navbar/NavbarDrawer";
-import {
-  AppShell,
-  Box,
-  Button,
-  Divider,
-  Group,
-  Stack,
-  Text,
-  Tooltip,
-  UnstyledButton,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import {
-  IconBriefcase,
-  IconCircle,
-  IconHome,
-  IconMail,
-  IconMenu2,
-  IconUser,
-} from "@tabler/icons-react";
-import { Suspense } from "react";
-
-const navItems = [
-  { label: "Home", icon: IconHome },
-  { label: "About", icon: IconUser },
-  { label: "Projects", icon: IconBriefcase },
-  { label: "Contact", icon: IconMail },
-];
+import Hero from "@/components/site/Hero";
+import Projects from "@/components/site/Projects";
+import DesignGallery from "@/components/site/DesignGallery";
+import About from "@/components/site/About";
+import Experience from "@/components/site/Experience";
+import Skills from "@/components/site/Skills";
+import Contact from "@/components/site/Contact";
 
 export default function HomePage() {
   return (
-    <AppShell padding="md">
-      <Suspense>
-        <Home />
-      </Suspense>
-    </AppShell>
+    <>
+      <Hero />
+      <Projects />
+      <DesignGallery />
+      <About />
+      <Experience />
+      <Skills />
+      <Contact />
+    </>
   );
 }
