@@ -1,24 +1,32 @@
 import Image from "next/image";
-import { about, education, statement } from "@/lib/content";
+import { chapters, education, statement } from "@/lib/content";
 import Reveal from "./Reveal";
 import ParallaxBand from "./ParallaxBand";
 import ScrollWords from "./ScrollWords";
+import Shapes from "./Shapes";
 import Spot from "./Spot";
 
 export default function About() {
   return (
     <section id="about" className="section">
+      <Shapes preset="about" />
       <div className="wrap">
         <h2 className="h2">About</h2>
         <ScrollWords text={statement} />
         <ParallaxBand src="/images/design/cups-sky-wide.webp" alt="Three iced drinks on a table in front of a bright window" />
         <Reveal>
           <div className="about">
-            <div className="about__text">
-              {about.map((t) => (
-                <p key={t}>{t}</p>
+            <ol className="chapters">
+              {chapters.map((ch) => (
+                <li key={ch.title} className="chapter">
+                  <p className="chapter__when mono">{ch.when}</p>
+                  <div>
+                    <h3 className="chapter__title">{ch.title}</h3>
+                    <p className="chapter__text">{ch.text}</p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ol>
             <div className="edu">
               {education.map((e) => (
                 <Spot key={e.school} className="card edu__item">

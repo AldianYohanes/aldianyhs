@@ -6,6 +6,7 @@ import { IconArrowLeft, IconArrowRight, IconBrandGithub, IconExternalLink } from
 import { getProject, projects } from "@/lib/content";
 import { publicFileExists } from "@/lib/assets";
 import Art from "@/components/site/Art";
+import Reveal from "@/components/site/Reveal";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -43,7 +44,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
           <div>
             <dt>Status</dt>
-            <dd>{project.status}</dd>
+            <dd className="detail__status">{project.status}</dd>
           </div>
           <div>
             <dt>Stack</dt>
@@ -55,7 +56,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="detail__cover">
             <Image
               src={project.cover!}
-              alt={`${project.name} screenshot`}
+              alt={`${project.name} cover`}
               fill
               priority
               sizes="(min-width: 1200px) 1100px, 90vw"
@@ -66,28 +67,54 @@ export default async function ProjectPage({ params }: Props) {
           <Art variant={(index % 4) as 0 | 1 | 2 | 3} className="detail__art" />
         )}
 
-        <div className="detail__body">
-          <p className="detail__summary">{project.summary}</p>
-          <div>
-            <ul className="detail__list">
-              {project.highlights.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-            <div className="contact__links">
-              {project.github && (
-                <a className="btn" href={project.github} target="_blank" rel="noopener noreferrer">
-                  <IconBrandGithub size={18} stroke={1.75} aria-hidden /> GitHub
-                </a>
-              )}
-              {project.live && (
-                <a className="btn btn--primary" href={project.live} target="_blank" rel="noopener noreferrer">
-                  <IconExternalLink size={18} stroke={1.75} aria-hidden /> Live site
-                </a>
-              )}
-            </div>
-          </div>
+        <p className="detail__summary">{project.summary}</p>
+        <div className="contact__links" style={{ marginTop: 24 }}>
+          {project.github && (
+            <a className="btn" href={project.github} target="_blank" rel="noopener noreferrer">
+              <IconBrandGithub size={18} stroke={1.75} aria-hidden /> GitHub
+            </a>
+          )}
+          {project.live && (
+            <a className="btn btn--primary" href={project.live} target="_blank" rel="noopener noreferrer">
+              <IconExternalLink size={18} stroke={1.75} aria-hidden /> Live site
+            </a>
+          )}
         </div>
+
+        <div className="story">
+          {project.story.map((s) => (
+            <Reveal key={s.title}>
+              <section className="story__section">
+                <h2 className="story__title">{s.title}</h2>
+                <div className="story__body">
+                  {s.paragraphs?.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
+                  {s.points && (
+                    <ul className="detail__list">
+                      {s.points.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </section>
+            </Reveal>
+          ))}
+        </div>
+
+        {project.lessons.length > 0 && (
+          <Reveal>
+            <aside className="lesson">
+              <h2 className="story__title">What I took from it</h2>
+              <ul className="detail__list detail__list--amber">
+                {project.lessons.map((l) => (
+                  <li key={l}>{l}</li>
+                ))}
+              </ul>
+            </aside>
+          </Reveal>
+        )}
 
         {project.gallery && (
           <div className={`detail__gallery ${project.galleryShape === "square" ? "detail__gallery--square" : ""}`}>
