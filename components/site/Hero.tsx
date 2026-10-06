@@ -4,11 +4,13 @@ import { IconArrowDown } from "@tabler/icons-react";
 import { person } from "@/lib/content";
 import Art from "./Art";
 import Magnetic from "./Magnetic";
+import Shapes from "./Shapes";
 
 export default function Hero() {
   const [first, last] = person.name.split(" ");
   return (
     <section className="hero">
+      <Shapes preset="hero" />
       <div className="wrap hero__grid">
         <div>
           <h1 className="hero__title">

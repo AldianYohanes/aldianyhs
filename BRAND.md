@@ -15,10 +15,10 @@ Direction: editorial, dark, deep teal. Quiet confidence, plain language, real wo
 | `--line` | `#1d3236` | Borders, dividers |
 | `--text` | `#e8f0ef` | Primary text |
 | `--muted` | `#93a9a7` | Secondary text |
-| `--accent` | `#5fd0bc` | The one accent: links, primary button, markers |
+| `--accent` | `#5fd0bc` | Primary accent: links, primary button, markers |
 | `--accent-ink` | `#06201c` | Text on the accent |
 
-One accent only. No second hue anywhere on the page.
+Two accents with fixed jobs. Teal leads: actions, links, markers, structure. Amber (`--accent-2`, `#e2a65b`) is the warm second voice: statuses, dates in the About story, the "What I took from it" callout, sparks and a few shapes. Use amber sparingly; never for buttons.
 
 ## Typography
 - Display and body: Geist (600 for headings, tight tracking `-0.03em` to `-0.045em`).
@@ -27,6 +27,7 @@ One accent only. No second hue anywhere on the page.
 
 ## Shape and motion
 - Buttons are pills. Cards are 16px. No other radius.
+- Moving shapes (blobs, rings, plus signs, sparks) sit behind Hero, About and Contact. There is exactly one marquee, the tool logos under the hero.
 - Motion only for hierarchy: hero entry stagger, one-time section reveal, card hover lift. All of it is off under `prefers-reduced-motion`.
 
 ## Content rules

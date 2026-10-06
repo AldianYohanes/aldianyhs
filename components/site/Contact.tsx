@@ -3,11 +3,13 @@ import { person } from "@/lib/content";
 import { publicFileExists } from "@/lib/assets";
 import Magnetic from "./Magnetic";
 import Reveal from "./Reveal";
+import Shapes from "./Shapes";
 
 export default function Contact() {
   const hasCv = publicFileExists(person.cv);
   return (
     <section id="contact" className="section contact">
+      <Shapes preset="contact" />
       <div className="wrap">
         <Reveal>
           <h2 className="h2">Contact</h2>

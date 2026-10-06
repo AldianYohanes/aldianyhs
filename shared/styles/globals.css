@@ -11,6 +11,7 @@
   --muted: #93a9a7;
   --accent: #5fd0bc;
   --accent-ink: #06201c;
+  --accent-2: #e2a65b; /* warm amber: Alleyway Muse warmth, status and highlights, used sparingly */
 
   --radius-card: 16px;
   --radius-pill: 999px;
@@ -63,7 +64,8 @@ a { color: inherit; text-decoration: none; }
   background:
     radial-gradient(60% 50% at 85% 8%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%),
     radial-gradient(50% 45% at 5% 55%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 70%),
-    radial-gradient(70% 50% at 60% 105%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
+    radial-gradient(70% 50% at 60% 105%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    radial-gradient(40% 35% at 0% 100%, color-mix(in srgb, var(--accent-2) 9%, transparent), transparent 70%);
 }
 .grain {
   position: fixed;
@@ -143,7 +145,7 @@ a { color: inherit; text-decoration: none; }
 .nav__links { display: flex; gap: clamp(14px, 2.6vw, 28px); font-size: 0.92rem; color: var(--muted); }
 .nav__links a { transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
-.nav__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform-origin: left; }
+.nav__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transform-origin: left; }
 
 /* Hero */
 .hero { min-height: 100dvh; display: flex; align-items: center; padding-top: 96px; padding-bottom: 56px; position: relative; }
@@ -176,7 +178,7 @@ a { color: inherit; text-decoration: none; }
 .art__conic {
   position: absolute;
   inset: -25%;
-  background: conic-gradient(from var(--a, 0deg), transparent 0deg, color-mix(in srgb, var(--accent) 60%, transparent) 80deg, transparent 160deg, color-mix(in srgb, var(--accent) 24%, transparent) 250deg, transparent 360deg);
+  background: conic-gradient(from var(--a, 0deg), transparent 0deg, color-mix(in srgb, var(--accent) 60%, transparent) 80deg, transparent 160deg, color-mix(in srgb, var(--accent-2) 28%, transparent) 250deg, transparent 360deg);
   filter: blur(36px);
   animation: spin 30s linear infinite;
 }
@@ -368,3 +370,74 @@ a { color: inherit; text-decoration: none; }
 .detail__gallery--square .detail__shot { aspect-ratio: 1; }
 .notfound { display: grid; gap: 8px; justify-items: start; }
 .notfound img { height: auto; width: min(100%, 360px); margin-bottom: 16px; }
+
+/* Amber accent usage, narrative and chapters */
+.detail__status { color: var(--accent-2); }
+.detail__summary { margin-top: 48px; }
+.story { margin-top: 72px; display: grid; gap: 56px; }
+.story__section { display: grid; gap: 16px; }
+.story__title { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; }
+.story__body { display: grid; gap: 16px; max-width: 66ch; color: var(--muted); font-size: 1.05rem; }
+.story__body .detail__list { color: var(--text); }
+.lesson { margin-top: 72px; padding: clamp(22px, 3vw, 36px); border: 1px solid color-mix(in srgb, var(--accent-2) 30%, var(--line)); border-left: 3px solid var(--accent-2); border-radius: var(--radius-card); background: radial-gradient(80% 120% at 0% 0%, color-mix(in srgb, var(--accent-2) 10%, transparent), transparent 70%), var(--bg-raised); }
+.lesson .story__title { margin-bottom: 16px; color: var(--accent-2); }
+.detail__list--amber li::before { background: var(--accent-2); }
+.chapters { list-style: none; display: grid; gap: 40px; max-width: 680px; align-content: start; }
+.chapter { display: grid; gap: 6px; }
+.chapter__when { color: var(--accent-2); font-size: 0.85rem; }
+.chapter__title { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; }
+.chapter__text { margin-top: 8px; color: var(--muted); font-size: 1.05rem; }
+@media (min-width: 768px) {
+  .story__section { grid-template-columns: 240px 1fr; gap: 40px; }
+  .chapter { grid-template-columns: 150px 1fr; gap: 28px; }
+  .chapter__when { padding-top: 6px; }
+}
+
+/* Moving abstract shapes */
+.hero, .contact, #about { isolation: isolate; }
+.shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+.shape-wrap { position: absolute; display: block; }
+.shape { position: absolute; inset: 0; display: block; opacity: 0.55; }
+.shape--blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; filter: blur(14px); opacity: 0.4; }
+.shape--blob.shape--teal { background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 55%, transparent), color-mix(in srgb, var(--accent) 6%, transparent) 70%); }
+.shape--blob.shape--amber { background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent-2) 50%, transparent), color-mix(in srgb, var(--accent-2) 6%, transparent) 70%); }
+.shape--ring { border-radius: 50%; border: 1.5px solid; }
+.shape--ring.shape--teal { border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.shape--ring.shape--amber { border-color: color-mix(in srgb, var(--accent-2) 55%, transparent); }
+.shape--plus::before, .shape--plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; transform: translate(-50%, -50%); border-radius: 2px; background: currentColor; }
+.shape--plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+.shape--plus.shape--teal { color: var(--accent); }
+.shape--plus.shape--amber { color: var(--accent-2); }
+.shape--spark { clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.shape--spark.shape--teal { background: var(--accent); }
+.shape--spark.shape--amber { background: var(--accent-2); }
+.shape--dots { background-image: radial-gradient(currentColor 1.5px, transparent 1.6px); background-size: 16px 16px; }
+.shape--dots.shape--teal { color: var(--accent); }
+.shape--dots.shape--amber { color: var(--accent-2); }
+
+/* The one marquee */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 24px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee__track { display: flex; width: max-content; }
+.marquee__row { display: flex; flex: none; list-style: none; }
+.marquee__item { display: inline-flex; align-items: center; gap: 12px; padding-inline: 22px; font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; color: var(--muted); white-space: nowrap; transition: color 0.2s; }
+.marquee__item:hover { color: var(--text); }
+.marquee__item .techicon { width: 26px; height: 26px; }
+.marquee__spark { width: 12px; height: 12px; margin-left: 22px; background: var(--accent-2); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+@media (prefers-reduced-motion: no-preference) {
+  .shape--blob { animation: morph 16s ease-in-out infinite, floaty 22s ease-in-out infinite; }
+  .shape--ring { animation: spin 60s linear infinite; }
+  .shape--plus { animation: spin 40s linear infinite; }
+  .shape--spark { animation: pulse 6s ease-in-out infinite; }
+  .shape--dots { animation: floaty 18s ease-in-out infinite; }
+  .marquee__track { animation: marquee 55s linear infinite; }
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { width: auto; flex-wrap: wrap; justify-content: center; }
+  .marquee__row:last-child { display: none; }
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+}
+@keyframes morph { 0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } }
+@keyframes floaty { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(14px, -18px, 0) rotate(6deg); } }
+@keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.55; } 50% { transform: scale(1.25) rotate(20deg); opacity: 0.9; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
